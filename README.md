@@ -6,7 +6,7 @@
 
 ![coding_style](https://img.shields.io/badge/code%20style-black-000000.svg)
 
-A visualization on building energy and greenhouse gas emission performance information of selected properties
+A Streamlit app to visualize building energy and greenhouse gas emission performance information of selected properties
 
 ## Environment
 
