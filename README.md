@@ -17,7 +17,7 @@ A Streamlit app to visualize building energy and greenhouse gas emission perform
     python -m venv .venv
     .venv\Scripts\activate
     pip install -r requirements-dev.txt
-    streamlit run app.py
+    streamlit run streamlit_app.py
 
 ## Credits
 
