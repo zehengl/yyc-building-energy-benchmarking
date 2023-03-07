@@ -17,7 +17,7 @@ st.caption(
 )
 
 
-@st.cache
+@st.cache_data
 def load_df():
     yyc_data_url = "https://data.calgary.ca/resource/8twd-upbv.json"
     response = requests.get(yyc_data_url)
