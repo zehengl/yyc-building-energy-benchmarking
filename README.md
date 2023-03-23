@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://cdn1.iconfinder.com/data/icons/provincial-electricity-authority-2/64/building_construction_urban_power_energy-512.png" alt="logo" height="196">
+    <img src="https://cdn1.iconfinder.com/data/icons/provincial-electricity-authority-2/64/building_construction_urban_power_energy-512.png" alt="logo" height="128">
 </div>
 
 # yyc-building-energy-benchmarking
