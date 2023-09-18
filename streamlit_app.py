@@ -1,7 +1,7 @@
 import pandas as pd
+import plotly.express as px
 import requests
 import streamlit as st
-import plotly.express as px
 
 
 st.set_page_config(page_title="yyc-building-energy-benchmarking", page_icon="house")
@@ -24,6 +24,7 @@ def load_df():
     df = pd.DataFrame(response.json())
     df["energy_star_score"] = pd.to_numeric(df["energy_star_score"])
     df["site_eui_gj_m"] = pd.to_numeric(df["site_eui_gj_m"])
+    df = df.sort_values(["year_ending", "property_name"])
     return df
 
 
@@ -73,6 +74,7 @@ fig.update_layout(
         x=1,
     )
 )
+fig.update_xaxes(type="category")
 fig
 
 num_of_records_per_property = (
@@ -97,5 +99,5 @@ if property_ids:
             "year_ending": "Year",
         },
     )
-
+    fig.update_xaxes(type="category")
     fig
