@@ -4,12 +4,6 @@ import requests
 import streamlit as st
 
 st.set_page_config(page_title="yyc-building-energy-benchmarking", page_icon="house")
-_, center, _ = st.columns([2, 1, 2])
-with center:
-    st.image(
-        "https://cdn1.iconfinder.com/data/icons/provincial-electricity-authority-2/64/building_construction_urban_power_energy-512.png",
-        use_column_width=True,
-    )
 st.title("yyc-building-energy-benchmarking")
 st.caption(
     "A visualization on building energy and greenhouse gas emission performance information of selected properties"
