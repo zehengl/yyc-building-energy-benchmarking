@@ -6,7 +6,7 @@ A Streamlit app to visualize building energy and greenhouse gas emission perform
 
 ## Environment
 
-- Python 3.10
+- Python 3.12
 
 ## Getting Started
 
