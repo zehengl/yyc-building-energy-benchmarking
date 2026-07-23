@@ -12,11 +12,12 @@ st.caption(
 
 @st.cache_data
 def load_df():
-    yyc_data_url = "https://data.calgary.ca/resource/8twd-upbv.json"
+    yyc_data_url = "https://data.calgary.ca/resource/r5x7-cju4.json"
     response = requests.get(yyc_data_url)
     df = pd.DataFrame(response.json())
     df["energy_star_score"] = pd.to_numeric(df["energy_star_score"])
     df["site_eui_gj_m"] = pd.to_numeric(df["site_eui_gj_m"])
+    df["year_ending"] = pd.to_datetime(df["year_ending"]).dt.year
     df = df.sort_values(["year_ending", "property_name"])
     return df
 
@@ -51,10 +52,10 @@ st.subheader("Number of Properties")
 fig = px.bar(
     df.groupby("year_ending").count().reset_index(),
     x="year_ending",
-    y="property_id",
+    y="property_name",
     color="year_ending",
     labels={
-        "property_id": "# of properties",
+        "property_name": "# of properties",
         "year_ending": "Year",
     },
 )
@@ -71,7 +72,9 @@ fig.update_xaxes(type="category")
 fig
 
 num_of_records_per_property = (
-    df.groupby("property_id").apply(lambda group: group["year_ending"].count()).tolist()
+    df.groupby("property_name")
+    .apply(lambda group: group["year_ending"].count())
+    .tolist()
 )
 if len(set(num_of_records_per_property)) == 1:
     y = set(num_of_records_per_property).pop()
@@ -79,16 +82,16 @@ if len(set(num_of_records_per_property)) == 1:
     st.caption(f"All {p} properties have {y} years of records.")
 
 
-st.subheader("Total GHG Emissions Intensity")
-property_ids = st.multiselect("property", df["property_id"].unique())
-if property_ids:
+st.subheader("Total Location Based GHG")
+property_names = st.multiselect("property", df["property_name"].unique())
+if property_names:
     fig = px.line(
-        df[df["property_id"].isin(property_ids)],
+        df[df["property_name"].isin(property_names)],
         x="year_ending",
-        y="total_ghg_emissions_intensity",
-        color="property_id",
+        y="total_location_based_ghg",
+        color="property_name",
         labels={
-            "total_ghg_emissions_intensity": "Total GHG Emissions Intensity",
+            "total_location_based_ghg": "Total Location Based GHG",
             "year_ending": "Year",
         },
     )
